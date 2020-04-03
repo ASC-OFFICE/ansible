@@ -1,0 +1,7 @@
+jenkins_slave_labels:
+    - linux
+    - linux_tb
+
+jenkins_slave_property:
+    - key: MAKEFLAGS
+      value: "-e -j 4"

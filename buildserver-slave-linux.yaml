@@ -18,3 +18,8 @@
 # Don't uncomment lines below, it runs in buildserver.yaml
 #    - github-user
 #    - aws-cli
+
+- hosts: build-linux-tb-slaves
+
+  roles:
+    - tb-builder

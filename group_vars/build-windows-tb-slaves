@@ -1,0 +1,5 @@
+license_path: "{{ user_profile_path }}\\AppData\\Local\\Microsoft\\VSCommon\\OnlineLicensing\\VisualStudio\\15.0\\Community"
+
+jenkins_slave_labels:
+    - win
+    - win_tb

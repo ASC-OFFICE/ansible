@@ -10,6 +10,11 @@
     - role: github-user
       user_profile_path: C:\Msys
 
+- hosts: build-windows-tb-slaves
+
+  roles:
+    - tb-builder
+
 - hosts: build-windows-slaves
 
   roles:
