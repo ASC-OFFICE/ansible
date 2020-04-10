@@ -3,3 +3,7 @@ license_path: "{{ user_profile_path }}\\AppData\\Local\\Microsoft\\VSCommon\\Onl
 jenkins_slave_labels:
     - win
     - win_tb
+
+jenkins_slave_property:
+    - key: MOZ_NO_RESET_PATH
+      value: "1"
