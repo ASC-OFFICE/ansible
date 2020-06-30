@@ -1,0 +1,5 @@
+---
+
+astralinux_public_key_src: "astra/r7-office_pub.key"
+astralinux_secret_key_src: "astra/r7-office_secret.gpg"
+astralinux_password_src: "astra/r7-office_password.txt"

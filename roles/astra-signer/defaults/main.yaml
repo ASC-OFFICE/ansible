@@ -1,0 +1,6 @@
+---
+
+astralinux_keys_dir: "{{ ssh_home }}/.astralinux_keys"
+astralinux_public_key_file: "{{ astralinux_keys_dir }}/public.key"
+astralinux_secret_key_file: "{{ astralinux_keys_dir }}/secret.gpg"
+astralinux_password_file: "{{ astralinux_keys_dir }}/password.txt"

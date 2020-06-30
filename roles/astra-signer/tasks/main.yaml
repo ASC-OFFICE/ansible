@@ -1,0 +1,31 @@
+---
+
+- name: "Create a directory for keys if it doesn't exist"
+  file:
+    path: "{{ astralinux_keys_dir }}"
+    state: directory
+
+- name: "Copy public key file"
+  copy:
+    src: "{{ astralinux_public_key_src }}"
+    dest: "{{ astralinux_public_key_file }}"
+
+- name: "Copy secret key file"
+  copy:
+    src: "{{ astralinux_secret_key_src }}"
+    dest: "{{ astralinux_secret_key_file }}"
+
+- name: "Copy password file"
+  copy:
+    src: "{{ astralinux_password_src }}"
+    dest: "{{ astralinux_password_file }}"
+
+- name: "Set corect folder owners/permissions"
+  file:
+    path: "{{ astralinux_keys_dir }}"
+    state: directory
+    recurse: yes
+    owner: "{{ ssh_user }}"
+    group: "{{ ssh_user }}"
+    mode: u+rw,g-rwx,o-rwx
+  become: yes

@@ -10,6 +10,8 @@ dockerhub_pwd: !vault |
           3931393136613135650a363332393939343335353461643631383735653163643564383861333838
           6533
 
+astralinux_keys_dir: "{{ ssh_home }}/.astralinux_keys"
+
 jenkins_slave_labels:
     - linux
     - linux_64
@@ -25,3 +27,5 @@ jenkins_slave_property:
       value: /usr/local/Qt-5.9.8/plugins
     - key: QT_SELECT
       value: qt
+    - key: ASTRALINUX_KEYS_DIR
+      value: "{{ astralinux_keys_dir }}"
