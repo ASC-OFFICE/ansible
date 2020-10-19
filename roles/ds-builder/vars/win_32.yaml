@@ -1,3 +1,4 @@
+---
 program_files: "{{ program_files_32 }}"
 
 packages:
@@ -26,8 +27,8 @@ packages:
     path: "{{ download_path }}\\is-unicode.exe"
 
   - name: Java
-    url: http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-windows-i586.exe
-    product_id: '{26A24AE4-039D-4CA4-87B4-2F32180131F0}'
+    url: http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-windows-x64.exe
+    product_id: '{26A24AE4-039D-4CA4-87B4-2F64180131F0}'
     arguments: '{{ java_args }}'
     path: "{{ download_path }}\\java.exe"
     headers: 
@@ -78,11 +79,25 @@ packages:
     path: "{{ download_path }}\\qt.exe"
 
   - name: QT 5.6
-    url: http://download.qt.io/archive/qt/5.6/5.6.3/qt-opensource-windows-x86-msvc2015-5.6.3.exe
+    url: http://download.qt.io/new_archive/qt/5.6/5.6.3/qt-opensource-windows-x86-msvc2015-5.6.3.exe
     product_id: '{a6de10bd-9db8-4d6b-bb0b-22bc2da648b0}'
     creates_path: "{{ qt56_path }}"
     arguments: '{{ qt56_args }}'
     path: "{{ download_path }}\\qt56.exe"
+
+  - name: Strawberry Perl 5.30.2.1
+    url: http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-32bit.msi
+    product_id: '{2E2B305B-6E94-1014-A14A-250D35D88115}'
+    creates_path: C:\Strawberry
+    arguments: "{{ msi_args }}"
+    path: "{{ download_path }}\\strawberry-perl.msi"
+
+  - name: NASM 2.14.02
+    url: https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win32/nasm-2.14.02-installer-x86.exe
+    product_id: ''
+    creates_path: "{{ program_files_32 }}\\NASM"
+    arguments: "/S"
+    path: "{{ download_path }}\\nasm.exe"
 
 mingw_packages:
   - name: Mingw
@@ -101,5 +116,9 @@ exec_path:
   - '{{ program_files_32 }}\Inno Setup 5'
   - '{{ program_files_32 }}\Microsoft Visual Studio 14.0\VC\bin'
   - '{{ program_files_32 }}\Windows Kits\10\bin\x86'
+  - '{{ program_files_32 }}\NASM'
+  - '%SystemDrive%\Strawberry\c\bin'
+  - '%SystemDrive%\Strawberry\perl\site\bin'
+  - '%SystemDrive%\Strawberry\perl\bin'
 
 innosetup_path: "{{ program_files_32 }}\\Inno Setup 5"
