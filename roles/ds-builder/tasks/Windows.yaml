@@ -1,3 +1,4 @@
+---
 - name: Include windows architecture variables.
   include_vars: "{{ win_target }}.yaml"
 
@@ -8,6 +9,7 @@
   register: win_feature
   changed_when: win_feature.reboot_required
   notify: restart-server
+  when: ansible_os_product_type == "server"
 
 - name: Create download directory
   win_file:
@@ -18,11 +20,15 @@
   win_get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path }}"
-    headers: "{{ item.headers|default() }}"
+    headers: "{{ item.headers | default(omit) }}"
     force: no
   with_items:
     - "{{ packages }}"
     - "{{ mingw_packages }}"
+  register: result
+  until: result.status_code == 200
+  retries: 5
+  delay: 60
 
 - name: Get vs.xml
   win_template:
@@ -49,9 +55,13 @@
     src: 'qti/qt56-auto-install.qs.jn2'
     dest: '{{ qt56_auto_install }}'
 
+- name: Disable Qt login
+  win_hosts:
+    canonical_name: iapi.qt.io
+    ip_address: 127.0.0.1
+
 - name: Install packages GUIDed packages
   win_package:
-    name: "{{ item.name }}"
     path: "{{ item.path }}"
     product_id: "{{ item.product_id|default(omit) }}"
     creates_path: "{{ item.creates_path|default(omit) }}"
@@ -59,7 +69,6 @@
   when: item.product_id is defined
   with_items:
     - "{{ packages }}"
-
 
 - name: Install additional langs for innosetup
   win_get_url:
@@ -129,5 +138,3 @@
     data: 2
     type: dword
   notify: restart-server
-
-    

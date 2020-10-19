@@ -1,3 +1,4 @@
+---
 - name: Create jenkin directory on remote windows host
   win_file:
     path: "{{ jenkins_win_slave_home }}"
@@ -11,6 +12,7 @@
     url: "{{ jenkins_url }}/jnlpJars/agent.jar"
     dest: "{{ jenkins_win_slave_agent }}"
     force: no
+    validate_certs: no
   delegate_to: "{{ item }}" 
   with_items:
     - "{{ jenkins_win_slave_group }}"
@@ -23,6 +25,7 @@
     url_password: "{{ jenkins_admin_password }}"
     force_basic_auth: yes
     force: yes
+    validate_certs: no
   with_items:
     - "{{ jenkins_win_slave_group }}"
 

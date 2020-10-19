@@ -1,3 +1,4 @@
+---
 program_files: "{{ program_files_64 }}"
 
 packages:
@@ -78,11 +79,25 @@ packages:
     path: "{{ download_path }}\\qt.exe"
 
   - name: QT 5.6
-    url: http://download.qt.io/archive/qt/5.6/5.6.3/qt-opensource-windows-x86-msvc2015_64-5.6.3.exe
+    url: http://download.qt.io/new_archive/qt/5.6/5.6.3/qt-opensource-windows-x86-msvc2015_64-5.6.3.exe
     product_id: '{50580ecb-b0e0-40e3-8031-1fc6eaf8adba}'
     creates_path: "{{ qt56_path }}"
     arguments: '{{ qt56_args }}'
     path: "{{ download_path }}\\qt56.exe"
+
+  - name: Strawberry Perl 5.30.2.1
+    url: http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit.msi
+    product_id: '{A24E496A-6EAC-1014-8A44-C92135D88115}'
+    creates_path: C:\Strawberry
+    arguments: "{{ msi_args }}"
+    path: "{{ download_path }}\\strawberry-perl.msi"
+
+  - name: NASM 2.14.02
+    url: https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/nasm-2.14.02-installer-x64.exe
+    product_id: ''
+    creates_path: "{{ program_files_64 }}\\NASM"
+    arguments: "/S"
+    path: "{{ download_path }}\\nasm.exe"
 
 mingw_packages:
   - name: Mingw
@@ -101,5 +116,9 @@ exec_path:
   - '{{ program_files_32 }}\Inno Setup 5'
   - '{{ program_files_32 }}\Microsoft Visual Studio 14.0\VC\bin'
   - '{{ program_files_32 }}\Windows Kits\10\bin\x64'
+  - '{{ program_files_64 }}\NASM'
+  - '%SystemDrive%\Strawberry\c\bin'
+  - '%SystemDrive%\Strawberry\perl\site\bin'
+  - '%SystemDrive%\Strawberry\perl\bin'
 
 innosetup_path: "{{ program_files_32 }}\\Inno Setup 5"
