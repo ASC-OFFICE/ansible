@@ -5,12 +5,12 @@
     - hwe
     - kamaln7.swapfile
     - geerlingguy.ntp
+    - geerlingguy.pip
 
 - hosts: build-linux-64-slaves
 
   roles:
     - geerlingguy.nodejs
-    - geerlingguy.pip
     - geerlingguy.docker
     - ds-builder
     - qt

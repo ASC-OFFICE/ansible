@@ -4,9 +4,13 @@
 
 [build-linux-32-slaves]
 
+[build-linux-tb-slaves]
+
 [build-windows-64-slaves]
 
 [build-windows-32-slaves]
+
+[build-windows-tb-slaves]
 
 # Setup WinRm to be able to connect windows slaves
 # https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html#winrm-setup
@@ -14,6 +18,7 @@
 [build-windows-slaves:children]
 build-windows-64-slaves
 build-windows-32-slaves
+build-windows-tb-slaves
 
 [buildserver-windows-slaves:children]
 build-windows-slaves
@@ -21,6 +26,7 @@ build-windows-slaves
 [build-linux-slaves:children]
 build-linux-64-slaves
 build-linux-32-slaves
+build-linux-tb-slaves
 
 [buildserver-linux-slaves:children]
 build-linux-slaves
