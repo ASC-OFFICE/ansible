@@ -32,14 +32,9 @@
   become: yes
   ignore_errors: yes
 
-- name: Install patchelf repo
-  apt_repository:
-    repo: "{{ patchelf_repo }}"
-    filename: qt
-
 - name: Install patchelf
   apt:
-    name: "{{ patchelf_package }}"
+    deb: "{{ patchelf_deb_url }}"
     force: yes
 
 - name: Install grunt
@@ -52,6 +47,6 @@
 
 - name: Add cron task for docker weekly cleaning
   cron:
-    name: "docker clean old images"
+    name: "docker clean old data"
     special_time: weekly
-    job: "docker image prune -f -a --filter label=maintainer --filter until=168h"
+    job: "docker system prune -f -a --filter until=168h && docker volume prune -f"
