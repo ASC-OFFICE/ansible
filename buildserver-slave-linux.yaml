@@ -15,6 +15,7 @@
     - ds-builder
     - qt
     - astra-signer
+    - ftp-user
     - dockerhub-user
 # Don't uncomment lines below, it runs in buildserver.yaml
 #    - github-user

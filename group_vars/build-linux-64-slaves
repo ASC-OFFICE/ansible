@@ -12,6 +12,7 @@ dockerhub_pwd: !vault |
 
 astralinux_keys_dir: "{{ ssh_home }}/.astralinux_keys"
 
+ftp_server: "5.178.85.228"
 ftp_username: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           36663433376132323532366133623936343661396664383466343233643830356664636136636136
@@ -56,9 +57,5 @@ jenkins_slave_property:
       value: qt
     - key: ASTRALINUX_KEYS_DIR
       value: "{{ astralinux_keys_dir }}"
-    - key: FTP_USERNAME
-      value: "{{ ftp_username }}"
-    - key: FTP_PASSWORD
-      value: "{{ ftp_password }}"
     - key: GITHUB_TOKEN
       value: "{{ github_token }}"

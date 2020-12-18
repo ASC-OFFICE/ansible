@@ -1,0 +1,3 @@
+---
+lftp_data_path: "{{ ssh_home }}/.local/share/lftp"
+lftp_bookmarks_file: "{{ lftp_data_path }}/bookmarks"

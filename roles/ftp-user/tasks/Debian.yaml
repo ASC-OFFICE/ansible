@@ -1,0 +1,26 @@
+---
+- name: Install lftp
+  package:
+    name: lftp
+    state: latest
+    force: yes
+  become: yes
+
+- block:
+  - name: Create lftp data directory
+    file:
+      path: "{{ lftp_data_path }}"
+      state: directory
+      mode: "0700"
+
+  - name: Setup ftp credentials
+    blockinfile:
+      path: "{{ lftp_bookmarks_file }}"
+      create: yes
+      mode: "0600"
+      marker_begin: "R7 DOWNLOAD SERVER BEGIN"
+      marker_end: "R7 DOWNLOAD SERVER END"
+      block: |
+        {{ ftp_server }} ftp://{{ ftp_username }}:{{ ftp_password }}@{{ ftp_server }}
+  become: yes
+  become_user: "{{ ssh_user }}"

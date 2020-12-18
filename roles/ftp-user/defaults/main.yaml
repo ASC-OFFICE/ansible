@@ -1,0 +1,7 @@
+---
+ssh_home: "{{ ansible_env.HOME }}"
+ssh_user: "{{ ansible_user }}"
+
+ftp_server: localhost
+ftp_username: user
+ftp_password: password
